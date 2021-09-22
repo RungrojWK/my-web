@@ -1,21 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
-    render() {
-        return (
-            <div style={{ height: 1500 }}>
-                <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-                    <a class="navbar-brand" href="#">Logo</a>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div style={{ position: "fixed" }}>
+        <nav class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
+          <a class="navbar-brand" href="/home">
+            RUNGROJ
+          </a>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <Link to="/">home</Link>
+            </li>
+            <li class="nav-item">
+              <Link to="/map">Map</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    );
+  }
 }

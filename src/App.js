@@ -1,118 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './Components/Navbar'
+import React, { useState, useEffect } from "react";
+import { Link, Route, Switch } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+const Map = () => (
+  <div>
+    <h2>Map</h2>
+  </div>
+);
+const Covid19 = () => (
+  <div>
+    <h2>API Covid19</h2>
+  </div>
+);
 
 function App() {
+  const [heros, setHeros] = useState([]);
+
+  useEffect(async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/");
+      const heros_data = await res.json();
+      setHeros(heros_data);
+      console.log(heros);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <div className="container-fluid">
-        <h3>Sticjy Navbar</h3>
-        <p>A sticky navigation bar stays fixed at the top of the page when you scroll past it.</p>
-        <p>Scroll this page to see the effect. <strong>Note:</strong> sticky-top does not work in IE11 and earlier.</p>
+    <div className="container">      
+      <div className="row">
+        <div className="col-3">
+          <Navbar />
+        </div>
+        <div className="col-8">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/map">
+              <Map />
+            </Route>
+            <Route path="/:id">
+              <h1>Error 404</h1>
+            </Route>
+          </Switch>
+        </div>
       </div>
-      <Navbar/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
   );
 }
